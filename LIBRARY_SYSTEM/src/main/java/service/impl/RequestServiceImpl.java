@@ -5,6 +5,7 @@ import LIBRARY_SYSTEM.src.main.java.model.Book;
 import LIBRARY_SYSTEM.src.main.java.model.Person;
 import LIBRARY_SYSTEM.src.main.java.service.PriorityComparator;
 import LIBRARY_SYSTEM.src.main.java.service.RequestService;
+import LIBRARY_SYSTEM.src.main.java.LibraryApp.Request;
 
 import java.util.*;
 
@@ -14,6 +15,30 @@ public class RequestServiceImpl implements RequestService {
     public RequestServiceImpl() {
         this.priorityComparator = new PriorityComparatorImpl();
     }
+
+    @Override
+    public void processRequest(List<Book> books, List<Request> requests) {
+        Queue<Person> educationalRequests = new LinkedList<>();
+        List<Person> fictionRequests = new ArrayList<>();
+
+        for (Request request : requests) {
+            Book book = findBookById(request.getBookId(), books);
+            if (book != null) {
+                if (book.getGenre() == Genre.EDUCATIONAL) {
+                    educationalRequests.add(request.getPerson());
+                } else if (book.getGenre() == Genre.FICTION) {
+                    fictionRequests.add(request.getPerson());
+                }
+            }
+        }
+
+        System.out.println("Handling Educational Requests Based on Priority:");
+        requestBasedOnPriority(educationalRequests, books);
+
+        System.out.println("\nHandling Fiction Requests Based on FIFO:");
+        requestBasedOnFIFO(fictionRequests, books);
+    }
+
 
     @Override
     public void requestBasedOnPriority(Queue<Person> personQueue, List<Book> books) {
@@ -69,5 +94,14 @@ public class RequestServiceImpl implements RequestService {
                 }
             }
         }
+    }
+
+    private Book findBookById(int bookId, List<Book> books) {
+        for (Book book : books) {
+            if (book.getBookId() == bookId) {
+                return book;
+            }
+        }
+        return null;
     }
 }

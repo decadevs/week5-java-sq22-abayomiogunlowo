@@ -3,16 +3,22 @@ package LIBRARY_SYSTEM.src.main.java.model;
 import LIBRARY_SYSTEM.src.main.java.enums.Genre;
 
 public class Book {
+    private int bookId;
     private String title;
     private String author;
     private int copies;
     private Genre genre;
 
-    public Book(String title, String author, int copies, Genre genre) {
+    public Book(int bookId,String title, String author, int copies, Genre genre) {
+        this.bookId = bookId;
         this.title = title;
         this.author = author;
         this.copies = copies;
         this.genre = genre;
+    }
+
+    public int getBookId() {
+        return bookId;
     }
 
     public String getTitle() {
