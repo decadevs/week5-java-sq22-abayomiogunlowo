@@ -1,13 +1,13 @@
 package LIBRARY_SYSTEM.src.test.service.impl;
 
-import LIBRARY_SYSTEM.src.main.java.LibraryApp;
 import LIBRARY_SYSTEM.src.main.java.enums.Genre;
 import LIBRARY_SYSTEM.src.main.java.model.Book;
 import LIBRARY_SYSTEM.src.main.java.model.Person;
 import LIBRARY_SYSTEM.src.main.java.service.RequestService;
 import LIBRARY_SYSTEM.src.main.java.service.impl.RequestServiceImpl;
+import LIBRARY_SYSTEM.src.main.java.LibraryApp.Request;
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -21,8 +21,8 @@ public class RequestServiceImplTest {
     private RequestService requestService;
     private List<Book> books;
 
-    @BeforeEach
-    void setUp() {
+    @Before
+    public void setUp() {
         requestService = new RequestServiceImpl();
         books = new ArrayList<>();
         books.add(new Book(1234, "Math Basics", "Author A", 3, Genre.EDUCATIONAL));
@@ -32,13 +32,13 @@ public class RequestServiceImplTest {
 
     @Test
     public void testProcessRequest() {
-        List<LibraryApp.Request> requests = new ArrayList<>();
-        requests.add(new LibraryApp.Request(new Person("Alice", 20), 1234));
-        requests.add(new LibraryApp.Request(new Person("Bob"), 2345));
-        requests.add(new LibraryApp.Request(new Person("Charlie", 8), 1234));
-        requests.add(new LibraryApp.Request(new Person("David", 6), 3456));
-        requests.add(new LibraryApp.Request(new Person("Eve"), 3456));
-        requests.add(new LibraryApp.Request(new Person("Frank", 7), 3456));
+        List<Request> requests = new ArrayList<>();
+        requests.add(new Request(new Person("Alice", 20), 1234));
+        requests.add(new Request(new Person("Bob"), 2345));
+        requests.add(new Request(new Person("Charlie", 8), 1234));
+        requests.add(new Request(new Person("David", 6), 3456));
+        requests.add(new Request(new Person("Eve"), 3456));
+        requests.add(new Request(new Person("Frank", 7), 3456));
 
         requestService.processRequest(books, requests);
 

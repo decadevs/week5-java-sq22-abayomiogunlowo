@@ -39,7 +39,6 @@ public class RequestServiceImpl implements RequestService {
         requestBasedOnFIFO(fictionRequests, books);
     }
 
-
     @Override
     public void requestBasedOnPriority(Queue<Person> personQueue, List<Book> books) {
         PriorityQueue<Map.Entry<Person, String>> priorityQueue = new PriorityQueue<>(

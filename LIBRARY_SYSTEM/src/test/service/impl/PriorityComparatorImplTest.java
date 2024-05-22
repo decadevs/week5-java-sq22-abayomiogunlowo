@@ -3,8 +3,8 @@ package LIBRARY_SYSTEM.src.test.service.impl;
 import LIBRARY_SYSTEM.src.main.java.model.Person;
 import LIBRARY_SYSTEM.src.main.java.service.PriorityComparator;
 import LIBRARY_SYSTEM.src.main.java.service.impl.PriorityComparatorImpl;
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 
 import static org.junit.Assert.assertEquals;
 
@@ -12,8 +12,8 @@ public class PriorityComparatorImplTest {
 
     private PriorityComparator priorityComparator;
 
-    @BeforeEach
-    void setUp() {
+    @Before
+    public void setUp() {
         priorityComparator = new PriorityComparatorImpl();
     }
 
